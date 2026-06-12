@@ -1,0 +1,141 @@
+import Link from "next/link";
+
+export default function CheckoutPage() {
+  return (
+    <main className="min-h-screen bg-zinc-50 px-10 py-20">
+
+      <div className="max-w-6xl mx-auto">
+
+        <h1 className="text-6xl font-black mb-12">
+          Checkout
+        </h1>
+
+        <div className="grid lg:grid-cols-2 gap-10">
+
+          <div
+            className="
+            bg-white
+            rounded-[32px]
+            p-10
+            shadow-lg
+            "
+          >
+
+            <h2 className="text-3xl font-bold mb-8">
+              Customer Information
+            </h2>
+
+            <div className="space-y-6">
+
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="w-full border rounded-xl px-4 py-4"
+              />
+
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="w-full border rounded-xl px-4 py-4"
+              />
+
+              <input
+                type="text"
+                placeholder="Phone Number"
+                className="w-full border rounded-xl px-4 py-4"
+              />
+
+              <textarea
+                placeholder="Shipping Address"
+                rows={4}
+                className="w-full border rounded-xl px-4 py-4"
+              />
+
+            </div>
+
+            <h2 className="text-3xl font-bold mt-12 mb-8">
+              Payment Method
+            </h2>
+
+            <div className="space-y-4">
+
+              <label className="flex items-center gap-3">
+                <input type="radio" name="payment" />
+                Credit / Debit Card
+              </label>
+
+              <label className="flex items-center gap-3">
+                <input type="radio" name="payment" />
+                UPI
+              </label>
+
+              <label className="flex items-center gap-3">
+                <input type="radio" name="payment" />
+                Cash On Delivery
+              </label>
+
+            </div>
+
+          </div>
+
+          <div
+            className="
+            bg-white
+            rounded-[32px]
+            p-10
+            shadow-lg
+            h-fit
+            "
+          >
+
+            <h2 className="text-3xl font-bold mb-8">
+              Order Summary
+            </h2>
+
+            <div className="space-y-4 text-lg">
+
+              <div className="flex justify-between">
+                <span>Air Runner</span>
+                <span>₹4,999</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span>Urban Flow</span>
+                <span>₹5,999</span>
+              </div>
+
+            </div>
+
+            <div className="border-t mt-8 pt-8">
+
+              <div className="flex justify-between text-2xl font-bold">
+                <span>Total</span>
+                <span>₹10,998</span>
+              </div>
+
+            </div>
+
+            <Link
+              href="/order-success"
+              className="
+              mt-10
+              block
+              text-center
+              bg-black
+              text-white
+              py-4
+              rounded-full
+              "
+            >
+              Place Order
+            </Link>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  );
+}
