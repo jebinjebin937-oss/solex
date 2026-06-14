@@ -1,6 +1,9 @@
+"use client";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext";
 
 export default function CheckoutPage() {
+  const { clearCart } = useCart();
   return (
     <main className="min-h-screen bg-zinc-50 px-10 pt-32 pb-28">
 
@@ -117,6 +120,7 @@ export default function CheckoutPage() {
 
             <Link
               href="/order-success"
+              onClick={() => clearCart()}
               className="
               mt-10
               block

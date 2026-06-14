@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function CartPage() {
-  const { cart } = useCart();
+  const { cart, removeFromCart } = useCart();
   const [mounted, setMounted] = useState(false);
 
 useEffect(() => {
@@ -76,6 +76,18 @@ if (!mounted) {
                   <p className="text-zinc-500 mt-2">
                     ₹{item.price}
                   </p>
+
+                  <button
+                    onClick={() => removeFromCart(index)}
+                    className="
+                    mt-4
+                    text-red-500
+                    font-medium
+                    hover:text-red-700
+                    "
+                  >
+                    Remove
+                  </button>
 
                 </div>
 
