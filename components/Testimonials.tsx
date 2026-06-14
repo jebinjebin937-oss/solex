@@ -7,7 +7,7 @@ export default function Testimonials() {
     <section className="py-32 px-10 bg-zinc-50">
       <div className="max-w-7xl mx-auto">
 
-        <h2 className="text-6xl font-black text-center text-black mb-6">
+        <h2 className="text-5xl md:text-6xl font-black text-center text-black mb-6">
           What People Say
         </h2>
 

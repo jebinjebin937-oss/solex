@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function FeaturedCollection() {
   return (
-    <section className="py-32 px-10 bg-white">
+    <section className="py-20 px-10 bg-white">
       <div className="max-w-7xl mx-auto">
 
         <h2 className="text-6xl font-black text-center mb-6 text-zinc-900">

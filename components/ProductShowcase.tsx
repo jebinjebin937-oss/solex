@@ -5,40 +5,46 @@ import Image from "next/image";
 
 export default function ProductShowcase() {
   return (
-    <section className="py-20 px-10">
+    <section className="py-20 px-6 md:px-10">
 
-      <div className="bg-white rounded-[40px] shadow-xl p-12 grid md:grid-cols-2 gap-10 items-center"
+      <div
+        className="
+        bg-white
+        rounded-[40px]
+        shadow-xl
+        p-6
+        md:p-12
+        grid
+        md:grid-cols-2
+        gap-10
+        items-center
+        "
       >
         <div>
-          <h2 className="text-6xl font-black text-black">
+
+          <h2 className="text-4xl md:text-6xl font-black text-black">
             AIR FLEX PRO
           </h2>
 
-          <>
           <p className="mt-4 text-zinc-500 text-lg">
             Premium comfort and performance.
           </p>
 
-          <p className="mt-8 text-4xl font-black text-black">
+          <p className="mt-8 text-3xl md:text-4xl font-black text-black">
             ₹6,999
           </p>
 
           <div className="mt-8 space-y-3 text-zinc-600">
-
             <p>✓ Ultra Comfort Cushioning</p>
-
             <p>✓ Lightweight Performance</p>
-
             <p>✓ Premium Materials</p>
-
             <p>✓ Breathable Design</p>
-
           </div>
 
           <button className="mt-10 px-8 py-4 bg-black text-white rounded-full hover:scale-105 transition">
             Buy Now
           </button>
-        </>
+
         </div>
 
         <motion.div
@@ -50,13 +56,20 @@ export default function ProductShowcase() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          className="flex justify-center -mt-6"
         >
           <Image
             src="/images/showcase.png"
             alt="Air Flex Pro"
             width={650}
             height={650}
-            className="drop-shadow-2xl"
+            className="
+            w-full
+            max-w-[300px]
+            md:max-w-[650px]
+            h-auto
+            drop-shadow-2xl
+            "
           />
         </motion.div>
 

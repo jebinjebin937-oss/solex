@@ -8,7 +8,7 @@ export default function Footer() {
 
         <div className="text-center mb-24">
 
-          <h2 className="text-6xl font-black mb-6">
+          <h2 className="text-5xl md:text-6xl font-black mb-6">
             Stay Ahead
           </h2>
 
@@ -28,7 +28,7 @@ export default function Footer() {
                 bg-zinc-900
                 border
                 border-zinc-700
-                w-[320px]
+                w-full max-w-[320px]
                 outline-none
               "
             />

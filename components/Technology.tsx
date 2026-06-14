@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Technology() {
   return (
-    <section className="py-24 px-10 bg-zinc-50">
+    <section className="py-16 px-10 bg-zinc-50">
       <div className="max-w-7xl mx-auto">
 
         <h2 className="text-5xl font-black text-center mb-4 text-zinc-900">
@@ -15,7 +15,7 @@ export default function Technology() {
           Every step engineered for performance.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
           <motion.div
             whileHover={{ y: -10 }}
