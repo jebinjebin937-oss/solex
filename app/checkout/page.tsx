@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function CheckoutPage() {
   return (
-    <main className="min-h-screen bg-zinc-50 px-10 py-20">
+    <main className="min-h-screen bg-zinc-50 px-10 pt-32 pb-28">
 
       <div className="max-w-6xl mx-auto">
 

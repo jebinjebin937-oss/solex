@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+
 import Hero from "@/components/Hero";
 import FeaturedCollection from "@/components/FeaturedCollection";
 import Technology from "@/components/Technology";
@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <Navbar />
+      
       <Hero />
       <FeaturedCollection />
       <Technology />

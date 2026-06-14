@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+
 
 type CartItem = {
   id: string;
@@ -21,15 +28,29 @@ export function CartProvider({
 }: {
   children: ReactNode;
 }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
+const [cart, setCart] = useState<CartItem[]>(() => {
+  if (typeof window !== "undefined") {
+    const savedCart = localStorage.getItem("solex-cart");
+
+    if (savedCart) {
+      return JSON.parse(savedCart);
+    }
+  }
+
+  return [];
+});
+
+useEffect(() => {
+  localStorage.setItem(
+    "solex-cart",
+    JSON.stringify(cart)
+  );
+}, [cart]);
 
   const addToCart = (item: CartItem) => {
-  setCart((prev) => {
-    const updated = [...prev, item];
-    console.log("Cart updated:", updated);
-    return updated;
-  });
+  setCart((prev) => [...prev, item]);
 };
+
   return (
     <CartContext.Provider value={{ cart, addToCart }}>
       {children}

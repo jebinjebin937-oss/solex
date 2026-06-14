@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function OrderSuccessPage() {
   return (
-    <main className="min-h-screen bg-zinc-50 flex items-center justify-center px-10">
+    <main className="min-h-screen bg-zinc-50 flex items-center justify-center pt-32 pb-20 px-10">
 
       <div
         className="

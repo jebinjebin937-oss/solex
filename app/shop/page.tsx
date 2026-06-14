@@ -30,7 +30,7 @@ const products = [
 
 export default function ShopPage() {
   return (
-    <main className="min-h-screen bg-zinc-50 px-10 py-20">
+    <main className="min-h-screen bg-zinc-50 pt-32 pb-20 px-10">
 
       <div className="max-w-7xl mx-auto">
 

@@ -1,10 +1,19 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function CartPage() {
   const { cart } = useCart();
+  const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  setMounted(true);
+}, []);
+if (!mounted) {
+  return null;
+}
   const subtotal = cart.reduce(
   (total, item) =>
     total + Number(item.price.replace(/[₹,]/g, "")),
@@ -12,7 +21,7 @@ export default function CartPage() {
 );
 
   return (
-    <main className="min-h-screen bg-zinc-50 px-10 py-20">
+    <main className="min-h-screen bg-zinc-50 px-10 pt-32 pb-20">
 
       <div className="max-w-6xl mx-auto">
 
