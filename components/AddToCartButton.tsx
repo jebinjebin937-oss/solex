@@ -17,11 +17,10 @@ export default function AddToCartButton({ product }: Props) {
   return (
     <button
       onClick={() => {
-        console.log("ADDING", product);
         addToCart(product);
-        console.log("Cart item added:", product);
       }}
       className="
+      w-[200px]
       px-8
       py-4
       bg-black

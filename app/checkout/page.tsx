@@ -3,7 +3,13 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 
 export default function CheckoutPage() {
-  const { clearCart } = useCart();
+  const { cart, clearCart } = useCart();
+
+  const total = cart.reduce(
+    (sum, item) =>
+      sum + Number(item.price.replace(/[₹,]/g, "")),
+    0
+  );
   return (
     <main className="min-h-screen bg-zinc-50 px-10 pt-32 pb-28">
 
@@ -97,15 +103,15 @@ export default function CheckoutPage() {
 
             <div className="space-y-4 text-lg">
 
-              <div className="flex justify-between">
-                <span>Air Runner</span>
-                <span>₹4,999</span>
-              </div>
-
-              <div className="flex justify-between">
-                <span>Urban Flow</span>
-                <span>₹5,999</span>
-              </div>
+              {cart.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between"
+                >
+                  <span>{item.name}</span>
+                  <span>{item.price}</span>
+                </div>
+              ))}
 
             </div>
 
@@ -113,7 +119,7 @@ export default function CheckoutPage() {
 
               <div className="flex justify-between text-2xl font-bold">
                 <span>Total</span>
-                <span>₹10,998</span>
+                <span>₹{total}</span>
               </div>
 
             </div>

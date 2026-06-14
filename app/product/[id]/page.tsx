@@ -64,7 +64,7 @@ export default async function ProductPage({
         bg-white
         rounded-[40px]
         shadow-xl
-        p-12
+        p-6 md:p-12
         grid
         md:grid-cols-2
         gap-12
@@ -85,12 +85,12 @@ export default async function ProductPage({
         </div>
 
         <div>
-
+<div className="max-w-md">
           <p className="uppercase tracking-[6px] text-zinc-400 mb-4">
             SOLEX COLLECTION
           </p>
 
-          <h1 className="text-7xl font-black text-black mb-6">
+          <h1 className="text-5xl md:text-7xl font-black text-black mb-6">
             {product.name}
           </h1>
 
@@ -98,11 +98,11 @@ export default async function ProductPage({
             {product.description}
           </p>
 
-          <p className="text-5xl font-black text-black mb-10">
+          <p className="text-4xl font-black text-black mb-10">
             {product.price}
           </p>
 
-          <div className="flex gap-4 mb-10">
+          <div className="flex gap-3 mb-10 justify-start">
 
             <button className="border px-6 py-3 rounded-full">
               UK 7
@@ -118,7 +118,7 @@ export default async function ProductPage({
 
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col gap-4 items-center md:items-start">
 
             <AddToCartButton
               product={{
@@ -131,6 +131,7 @@ export default async function ProductPage({
 
             <button
               className="
+              w-[200px]
               px-8
               py-4
               border
@@ -143,6 +144,8 @@ export default async function ProductPage({
           </div>
 
         </div>
+
+      </div>
 
       </div>
 

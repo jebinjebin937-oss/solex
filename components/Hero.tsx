@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -7,7 +8,7 @@ export default function Hero() {
     <section
       className="
       min-h-[80vh] 
-      lg:min-h-screen
+      lg:min-h-screen pt-5
       flex
       flex-col-reverse
       lg:flex-row
@@ -23,6 +24,7 @@ export default function Hero() {
       lg:text-left
       "
     >
+      
       <div className="max-w-2xl">
 
         <p className="uppercase tracking-[8px] text-gray-400">
@@ -52,13 +54,31 @@ export default function Hero() {
           lg:justify-start
           "
         >
-          <button className="px-8 py-4 rounded-full bg-black text-white hover:scale-105 transition">
+          <Link
+            href="/shop"
+            className="
+            px-8
+            py-4
+            bg-black
+            text-white
+            rounded-full
+            "
+          >
             Shop Collection
-          </button>
+          </Link>
 
-          <button className="px-8 py-4 rounded-full bg-black text-white hover:scale-105 transition">
+          <Link
+            href="/#technology"
+            className="
+            px-8
+            py-4
+            bg-black
+            text-white
+            rounded-full
+            "
+          >
             Explore Technology
-          </button>
+          </Link>
         </div>
 
       </div>
@@ -70,12 +90,12 @@ export default function Hero() {
           absolute
           inset-0
           m-auto
-          w-[250px]
-          h-[250px]
-          md:w-[400px]
-          md:h-[400px]
-          lg:w-[500px]
-          lg:h-[500px]
+          w-[160px]
+          h-[160px]
+          md:w-[280px]
+          md:h-[280px]
+          lg:w-[380px]
+          lg:h-[380px]
           bg-orange-200
           rounded-full
           blur-[120px]
@@ -98,13 +118,11 @@ export default function Hero() {
             alt="shoe"
             width={700}
             height={700}
-            className="
-            relative
-            z-10
-            w-full
-            max-w-[260px]
-            md:max-w-[450px]
-            lg:max-w-[700px]
+            className="relative z-10 w-full
+            max-w-[200px]
+            md:max-w-[340px]
+            lg:max-w-[480px]
+            xl:max-w-[520px]
             h-auto
             "
           />

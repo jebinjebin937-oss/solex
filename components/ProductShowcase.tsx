@@ -5,7 +5,8 @@ import Image from "next/image";
 
 export default function ProductShowcase() {
   return (
-    <section className="py-20 px-6 md:px-10">
+    <section id="pricing" 
+             className="py-20 px-6 md:px-10">
 
       <div
         className="

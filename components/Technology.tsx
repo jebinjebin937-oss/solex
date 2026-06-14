@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 
 export default function Technology() {
   return (
-    <section className="py-16 px-10 bg-zinc-50">
+    <section id="technology"
+             className="py-16 px-10 bg-zinc-50">
       <div className="max-w-7xl mx-auto">
 
         <h2 className="text-5xl font-black text-center mb-4 text-zinc-900">

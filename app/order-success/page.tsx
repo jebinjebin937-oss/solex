@@ -15,16 +15,16 @@ export default function OrderSuccessPage() {
         bg-white
         rounded-[40px]
         shadow-xl
-        p-16
+        p-6 md:p-16
         text-center
         "
       >
 
-        <div className="text-7xl mb-8">
+        <div className="text-5xl md:text-7xl mb-8">
           🎉
         </div>
 
-        <h1 className="text-6xl font-black text-black mb-6">
+        <h1 className="text-4xl md:text-6xl font-black text-black mb-6">
           Order Confirmed
         </h1>
 
@@ -37,7 +37,7 @@ export default function OrderSuccessPage() {
           className="
           bg-zinc-50
           rounded-3xl
-          p-8
+          p-8 md:p-8
           mb-10
           "
         >
@@ -46,7 +46,7 @@ export default function OrderSuccessPage() {
             Order Number
           </p>
 
-          <h2 className="text-3xl font-black">
+          <h2 className="text-2xl md:text-3xl font-black">
             #SLX2026001
           </h2>
 
