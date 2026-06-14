@@ -24,9 +24,12 @@ export function CartProvider({
   const [cart, setCart] = useState<CartItem[]>([]);
 
   const addToCart = (item: CartItem) => {
-    setCart((prev) => [...prev, item]);
-  };
-
+  setCart((prev) => {
+    const updated = [...prev, item];
+    console.log("Cart updated:", updated);
+    return updated;
+  });
+};
   return (
     <CartContext.Provider value={{ cart, addToCart }}>
       {children}

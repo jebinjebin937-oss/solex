@@ -1,26 +1,15 @@
+"use client";
+import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function CartPage() {
-  const cartItems = [
-    {
-      id: 1,
-      name: "Air Runner",
-      price: 4999,
-      image: "/images/running.png",
-    },
-    {
-      id: 2,
-      name: "Urban Flow",
-      price: 5999,
-      image: "/images/lifestyle.png",
-    },
-  ];
-
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.price,
-    0
-  );
+  const { cart } = useCart();
+  const subtotal = cart.reduce(
+  (total, item) =>
+    total + Number(item.price.replace(/[₹,]/g, "")),
+  0
+);
 
   return (
     <main className="min-h-screen bg-zinc-50 px-10 py-20">
@@ -35,9 +24,21 @@ export default function CartPage() {
 
           <div className="lg:col-span-2 space-y-6">
 
-            {cartItems.map((item) => (
+            {cart.length === 0 && (
+              <div className="bg-white rounded-[32px] p-10 shadow-lg">
+                <h2 className="text-3xl font-bold">
+                  Your cart is empty
+                </h2>
+
+                <p className="text-zinc-500 mt-4">
+                  Add products from the shop.
+                </p>
+              </div>
+            )}
+
+  {cart.map((item, index) => (
               <div
-                key={item.id}
+                key={index}
                 className="
                 bg-white
                 rounded-[32px]

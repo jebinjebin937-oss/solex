@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import AddToCartButton from "@/components/AddToCartButton";
 
 export default async function ProductPage({
   params,
@@ -119,17 +120,14 @@ export default async function ProductPage({
 
           <div className="flex gap-4">
 
-            <button
-              className="
-              px-8
-              py-4
-              bg-black
-              text-white
-              rounded-full
-              "
-            >
-              Add To Cart
-            </button>
+            <AddToCartButton
+              product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+              }}
+            />
 
             <button
               className="
