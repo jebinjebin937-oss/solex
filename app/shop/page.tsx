@@ -64,7 +64,7 @@ export default function ShopPage() {
           Explore the SOLEX collection.
         </p>
 
-        <div className="max-w-xl mx-auto flex gap-3 mb-6">
+        <div className="max-w-xl mx-auto flex gap-3 mb-6 relative">
 
           <input
             type="text"
@@ -83,61 +83,82 @@ export default function ShopPage() {
             "
           />
 
-          <button
-            onClick={() =>
-              setShowFilters(!showFilters)
-            }
-            className="
-            px-5
-            border
-            rounded-full
-            hover:bg-black
-            hover:text-white
-            transition
-            "
-          >
-            ⚙ Filter
-          </button>
+          <div className="relative">
 
-        </div>
+  <button
+    onClick={() => setShowFilters(!showFilters)}
+    className="
+    px-5
+    py-4
+    border
+    rounded-full
+    hover:bg-black
+    hover:text-white
+    transition
+    "
+  >
+    ⚙
+  </button>
 
-        {showFilters && (
-  <div className="max-w-xl mx-auto mb-12">
-
-    <select
-      value={category}
-      onChange={(e) =>
-        setCategory(e.target.value)
-      }
+  {showFilters && (
+    <div
       className="
-      w-full
-      border
-      rounded-xl
-      px-4
-      py-4
+      absolute
+      right-0
+      top-16
+      w-64
       bg-white
+      rounded-3xl
+      shadow-2xl
+      p-5
+      z-50
       "
     >
-      <option value="All">
-        All Categories
-      </option>
+      <h3 className="font-bold mb-4">
+        Filters
+      </h3>
 
-      <option value="Running">
-        Running
-      </option>
+      <div className="space-y-2">
 
-      <option value="Lifestyle">
-        Lifestyle
-      </option>
+        {[
+          "All",
+          "Running",
+          "Lifestyle",
+          "Premium",
+        ].map((cat) => (
+          <button
+            key={cat}
+            onClick={() => {
+              setCategory(cat);
+              setShowFilters(false);
+            }}
+            className={`
+            w-full
+            text-left
+            px-4
+            py-3
+            rounded-xl
+            transition
+            ${
+              category === cat
+                ? "bg-black text-white"
+                : "hover:bg-zinc-100"
+            }
+            `}
+          >
+            {cat}
+          </button>
+        ))}
 
-      <option value="Premium">
-        Premium
-      </option>
+      </div>
 
-    </select>
+    </div>
+  )}
 
-  </div>
-)}
+</div>
+        </div>
+
+        
 
         <div className="grid md:grid-cols-4 gap-8">
 
