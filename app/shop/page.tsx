@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const products = [
   {
@@ -42,18 +43,78 @@ export default function ShopPage() {
   const [showCategories, setShowCategories] = useState(true);
   const [showPrice, setShowPrice] = useState(false);
   const [showSort, setShowSort] = useState(false);
+  const [priceFilter, setPriceFilter] =
+  useState("All");
+  const [sortOption, setSortOption] =
+  useState("Featured");
+  const resetFilters = () => {
+  setCategory("All");
+  setPriceFilter("All");
+  setSortOption("Featured");
+};
+
+useEffect(() => {
+  if (showFilters) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [showFilters]);
 
   const filteredProducts = products
-    .filter((product) =>
-      product.name
-        .toLowerCase()
-        .includes(search.toLowerCase())
-    )
-    .filter((product) =>
-      category === "All"
-        ? true
-        : product.category === category
+  .filter((product) =>
+    product.name
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  )
+  .filter((product) =>
+    category === "All"
+      ? true
+      : product.category === category
+  )
+  .filter((product) => {
+    const price = Number(
+      product.price.replace(/[₹,]/g, "")
     );
+
+    if (priceFilter === "Under ₹5,000") {
+      return price < 5000;
+    }
+
+    if (priceFilter === "₹5,000 - ₹7,000") {
+      return price >= 5000 && price <= 7000;
+    }
+
+    if (priceFilter === "₹7,000+") {
+      return price > 7000;
+    }
+
+    return true;
+  })
+    .sort((a, b) => {
+
+    const priceA = Number(
+      a.price.replace(/[₹,]/g, "")
+    );
+
+    const priceB = Number(
+      b.price.replace(/[₹,]/g, "")
+    );
+
+    if (sortOption === "Price Low → High") {
+      return priceA - priceB;
+    }
+
+    if (sortOption === "Price High → Low") {
+      return priceB - priceA;
+    }
+
+    return 0;
+  });
 
   return (
     <>
@@ -103,6 +164,7 @@ export default function ShopPage() {
     "
   >
     {showCategories ? "▼" : "▶"} Categories
+    {category !== "All" && ` • ${category}`}
   </button>
 
   {showCategories && (
@@ -118,6 +180,7 @@ export default function ShopPage() {
           key={cat}
           onClick={() => {
             setCategory(cat);
+            setShowCategories(true);
           }}
           className={`
           w-full
@@ -158,7 +221,44 @@ export default function ShopPage() {
     "
   >
     {showPrice ? "▼" : "▶"} Price
+    {priceFilter !== "All" && ` • ${priceFilter}`}
   </button>
+
+  {showPrice && (
+    <div className="space-y-2 mt-2">
+
+      {[
+        "All",
+        "Under ₹5,000",
+        "₹5,000 - ₹7,000",
+        "₹7,000+",
+      ].map((price) => (
+        <button
+          key={price}
+          onClick={() => {
+            setPriceFilter(price);
+            setShowPrice(true);
+          }}
+          className={`
+          w-full
+          text-left
+          px-4
+          py-3
+          rounded-xl
+          transition
+          ${
+            priceFilter === price
+              ? "bg-black text-white"
+              : "hover:bg-zinc-100"
+          }
+          `}
+        >
+          {price}
+        </button>
+      ))}
+
+    </div>
+  )}
 
 </div>
 
@@ -178,9 +278,59 @@ export default function ShopPage() {
     "
   >
     {showSort ? "▼" : "▶"} Sort
+    {sortOption !== "Featured" && ` • ${sortOption}`}
   </button>
+  {showSort && (
+    <div className="space-y-2 mt-2">
+
+      {[
+        "Featured",
+        "Price Low → High",
+        "Price High → Low",
+      ].map((sort) => (
+        <button
+          key={sort}
+          onClick={() => {
+            setSortOption(sort);
+            setShowSort(true);
+          }}
+          className={`
+          w-full
+          text-left
+          px-4
+          py-3
+          rounded-xl
+          transition
+          ${
+            sortOption === sort
+              ? "bg-black text-white"
+              : "hover:bg-zinc-100"
+          }
+          `}
+        >
+          {sort}
+        </button>
+      ))}
+
+    </div>
+  )}
 
 </div>
+
+<button
+  onClick={resetFilters}
+  className="
+  w-full
+  mt-6
+  border
+  py-3
+  rounded-full
+  hover:bg-zinc-100
+  transition
+  "
+>
+  Reset Filters
+</button>
 
 <button
   onClick={() =>
@@ -234,7 +384,15 @@ export default function ShopPage() {
           <div className="relative">
 
   <button
-    onClick={() => setShowFilters(!showFilters)}
+    onClick={() => {
+      setShowFilters(!showFilters);
+
+      if (!showFilters) {
+        setShowCategories(category !== "All");
+        setShowPrice(priceFilter !== "All");
+        setShowSort(sortOption !== "Featured");
+      }
+    }}
     className={`
     px-5
     py-4
