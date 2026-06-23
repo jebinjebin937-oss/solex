@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 const products = [
   {
@@ -29,6 +31,7 @@ const products = [
 ];
 
 export default function ShopPage() {
+  const [search, setSearch] = useState("");
   return (
     <main className="min-h-screen bg-zinc-50 pt-32 pb-20 px-10">
 
@@ -42,9 +45,48 @@ export default function ShopPage() {
           Explore the SOLEX collection.
         </p>
 
+        <div className="max-w-md mx-auto mb-12">
+  <input
+    type="text"
+    placeholder="Search shoes..."
+    value={search}
+    onChange={(e) =>
+      setSearch(e.target.value)
+    }
+    className="
+    w-full
+    px-5
+    py-4
+    border
+    rounded-full
+    outline-none
+    "
+  />
+</div>
+
         <div className="grid md:grid-cols-4 gap-8">
 
-          {products.map((product, index) => (
+          {products.filter((product) =>
+  product.name
+    .toLowerCase()
+    .includes(search.toLowerCase())
+).length === 0 ? (
+
+  <div className="col-span-full text-center">
+    <p className="text-zinc-500 text-lg">
+      No products found.
+    </p>
+  </div>
+
+) : (
+
+  products
+    .filter((product) =>
+      product.name
+        .toLowerCase()
+        .includes(search.toLowerCase())
+    )
+    .map((product, index) => (
             <div
               key={index}
               className="
@@ -91,7 +133,8 @@ export default function ShopPage() {
               </Link>
 
             </div>
-          ))}
+          ))
+)}
 
         </div>
 
