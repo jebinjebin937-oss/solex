@@ -57,12 +57,150 @@ export default function ShopPage() {
 
   return (
     <>
-      {showFilters && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setShowFilters(false)}
-        />
-      )}
+  {showFilters && (
+    <>
+      <div
+        className="
+        fixed
+        inset-0
+        bg-black/30
+        z-40
+        "
+        onClick={() => setShowFilters(false)}
+      />
+
+      <div
+        className="
+        fixed
+        top-20
+        right-0
+        h-[calc(100vh-80px)]
+        w-80
+        bg-white
+        shadow-2xl
+        z-50
+        overflow-y-auto
+        p-6
+        "
+        onClick={(e) => e.stopPropagation()}
+      >
+
+        <h3 className="font-bold text-xl mb-4">
+  Filters
+</h3>
+
+<div>
+
+  <button
+    onClick={() =>
+      setShowCategories(!showCategories)
+    }
+    className="
+    w-full
+    text-left
+    font-semibold
+    py-2
+    "
+  >
+    {showCategories ? "▼" : "▶"} Categories
+  </button>
+
+  {showCategories && (
+    <div className="space-y-2 mt-2">
+
+      {[
+        "All",
+        "Running",
+        "Lifestyle",
+        "Premium",
+      ].map((cat) => (
+        <button
+          key={cat}
+          onClick={() => {
+            setCategory(cat);
+          }}
+          className={`
+          w-full
+          text-left
+          px-4
+          py-3
+          rounded-xl
+          transition
+          ${
+            category === cat
+              ? "bg-black text-white"
+              : "hover:bg-zinc-100"
+          }
+          `}
+        >
+          {cat}
+        </button>
+      ))}
+
+    </div>
+  )}
+
+</div>
+
+<hr className="my-4" />
+
+<div>
+
+  <button
+    onClick={() =>
+      setShowPrice(!showPrice)
+    }
+    className="
+    w-full
+    text-left
+    font-semibold
+    py-2
+    "
+  >
+    {showPrice ? "▼" : "▶"} Price
+  </button>
+
+</div>
+
+<hr className="my-4" />
+
+<div>
+
+  <button
+    onClick={() =>
+      setShowSort(!showSort)
+    }
+    className="
+    w-full
+    text-left
+    font-semibold
+    py-2
+    "
+  >
+    {showSort ? "▼" : "▶"} Sort
+  </button>
+
+</div>
+
+<button
+  onClick={() =>
+    setShowFilters(false)
+  }
+  className="
+  w-full
+  mt-6
+  bg-black
+  text-white
+  py-3
+  rounded-full
+  "
+>
+  Done
+</button>
+
+      </div>
+    </>
+  )}
     <main className="min-h-screen bg-zinc-50 pt-32 pb-20 px-10">
       <div className="max-w-7xl mx-auto">
 
@@ -113,134 +251,7 @@ export default function ShopPage() {
     ⚙
   </button>
 
-  {showFilters && (
-    <div onClick={(e) => e.stopPropagation()}
-      className="
-      absolute
-      right-0
-      top-16
-      w-64
-      bg-white
-      rounded-3xl
-      shadow-2xl
-      p-5
-      z-50
-      "
-    >
-      <h3 className="font-bold mb-4">
-        Filters
-      </h3>
-
-      <div>
-
-  <button
-    onClick={() =>
-      setShowCategories(!showCategories)
-    }
-    className="
-    w-full
-    text-left
-    font-semibold
-    py-2
-    "
-  >
-    {showCategories ? "▼" : "▶"} Categories
-  </button>
-
-  {showCategories && (
-    <div className="space-y-2 mt-2">
-
-      {[
-        "All",
-        "Running",
-        "Lifestyle",
-        "Premium",
-      ].map((cat) => (
-        <button
-          key={cat}
-          onClick={() => {
-            setCategory(cat);
-          }}
-          className={`
-          w-full
-          text-left
-          px-4
-          py-3
-          rounded-xl
-          transition
-          ${
-            category === cat
-              ? "bg-black text-white"
-              : "hover:bg-zinc-100"
-          }
-          `}
-        >
-          {cat}
-        </button>
-      ))}
-    </div>
-  )}
-
-</div>
-
-<hr className="my-4" />
-
-<div>
-
-  <button
-    onClick={() =>
-      setShowPrice(!showPrice)
-    }
-    className="
-    w-full
-    text-left
-    font-semibold
-    py-2
-    "
-  >
-    {showPrice ? "▼" : "▶"} Price
-  </button>
-
-</div>
-
-<hr className="my-4" />
-
-<div>
-
-  <button
-    onClick={() =>
-      setShowSort(!showSort)
-    }
-    className="
-    w-full
-    text-left
-    font-semibold
-    py-2
-    "
-  >
-    {showSort ? "▼" : "▶"} Sort
-  </button>
-
-  <button
-  onClick={() =>
-    setShowFilters(false)
-  }
-  className="
-  w-full
-  mt-6
-  bg-black
-  text-white
-  py-3
-  rounded-full
-  "
->
-  Done
-</button>
-
-</div>
-
-    </div>
-  )}
+  
 
 </div>
         </div>
