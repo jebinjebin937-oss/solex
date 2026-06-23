@@ -75,7 +75,15 @@ if (!mounted) {
             transition
             "
           >
-            🛒 {cart.length}
+            🛒 {
+              mounted
+                ? cart.reduce(
+                    (total, item) =>
+                      total + item.quantity,
+                    0
+                  )
+                : 0
+            }
           </Link>
 
           <Link

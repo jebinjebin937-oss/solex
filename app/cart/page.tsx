@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function CartPage() {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity, } = useCart();
   const [mounted, setMounted] = useState(false);
 
 useEffect(() => {
@@ -16,7 +16,11 @@ if (!mounted) {
 }
   const subtotal = cart.reduce(
   (total, item) =>
-    total + Number(item.price.replace(/[₹,]/g, "")),
+    total +
+    Number(
+      item.price.replace(/[₹,]/g, "")
+    ) *
+      item.quantity,
   0
 );
 
@@ -76,6 +80,42 @@ if (!mounted) {
                   <p className="text-zinc-500 mt-2">
                     ₹{item.price}
                   </p>
+
+                  <div className="flex items-center gap-4 mt-3">
+
+                    <button
+                      onClick={() =>
+                        decreaseQuantity(item.id)
+                      }
+                      className="
+                      w-8
+                      h-8
+                      border
+                      rounded-full
+                      "
+                    >
+                      -
+                    </button>
+
+                    <span className="font-semibold">
+                      {item.quantity}
+                    </span>
+
+                    <button
+                      onClick={() =>
+                        increaseQuantity(item.id)
+                      }
+                      className="
+                      w-8
+                      h-8
+                      border
+                      rounded-full
+                      "
+                    >
+                      +
+                    </button>
+
+                  </div>
 
                   <button
                     onClick={() => removeFromCart(index)}

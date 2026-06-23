@@ -14,6 +14,7 @@ type CartItem = {
   name: string;
   price: string;
   image: string;
+  quantity: number;
 };
 
 type CartContextType = {
@@ -21,6 +22,8 @@ type CartContextType = {
   addToCart: (item: CartItem) => void;
   removeFromCart: (index: number) => void;
   clearCart: () => void;
+  increaseQuantity: (id: string) => void;
+  decreaseQuantity: (id: string) => void;
 };
 
 
@@ -49,8 +52,60 @@ useEffect(() => {
 }, [cart]);
 
   const addToCart = (item: CartItem) => {
-  setCart((prev) => [...prev, item]);
+  setCart((prev) => {
+    const existing = prev.find(
+      (cartItem) => cartItem.id === item.id
+    );
+
+    if (existing) {
+      return prev.map((cartItem) =>
+        cartItem.id === item.id
+          ? {
+              ...cartItem,
+              quantity: cartItem.quantity + 1,
+            }
+          : cartItem
+      );
+    }
+
+    return [
+      ...prev,
+      {
+        ...item,
+        quantity: 1,
+      },
+    ];
+  });
 };
+
+const increaseQuantity = (id: string) => {
+  setCart((prev) =>
+    prev.map((item) =>
+      item.id === id
+        ? {
+            ...item,
+            quantity: item.quantity + 1,
+          }
+        : item
+    )
+  );
+};
+
+const decreaseQuantity = (id: string) => {
+  setCart((prev) =>
+    prev
+      .map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item
+      )
+      .filter((item) => item.quantity > 0)
+  );
+};
+
 const removeFromCart = (index: number) => {
   setCart((prev) =>
     prev.filter((_, i) => i !== index)
@@ -63,11 +118,13 @@ const clearCart = () => {
 
   return (
     <CartContext.Provider
-  value={{
+    value={{
     cart,
     addToCart,
     removeFromCart,
     clearCart,
+    increaseQuantity,
+    decreaseQuantity,
   }}
 >
       {children}
