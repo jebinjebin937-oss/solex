@@ -39,6 +39,9 @@ export default function ShopPage() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
+  const [showCategories, setShowCategories] = useState(true);
+  const [showPrice, setShowPrice] = useState(false);
+  const [showSort, setShowSort] = useState(false);
 
   const filteredProducts = products
     .filter((product) =>
@@ -53,6 +56,13 @@ export default function ShopPage() {
     );
 
   return (
+    <>
+      {showFilters && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setShowFilters(false)}
+        />
+      )}
     <main className="min-h-screen bg-zinc-50 pt-32 pb-20 px-10">
       <div className="max-w-7xl mx-auto">
 
@@ -87,21 +97,24 @@ export default function ShopPage() {
 
   <button
     onClick={() => setShowFilters(!showFilters)}
-    className="
+    className={`
     px-5
     py-4
     border
     rounded-full
-    hover:bg-black
-    hover:text-white
     transition
-    "
+    ${
+      showFilters
+        ? "bg-black text-white"
+        : "hover:bg-black hover:text-white"
+    }
+    `}
   >
     ⚙
   </button>
 
   {showFilters && (
-    <div
+    <div onClick={(e) => e.stopPropagation()}
       className="
       absolute
       right-0
@@ -118,39 +131,113 @@ export default function ShopPage() {
         Filters
       </h3>
 
-      <div className="space-y-2">
+      <div>
 
-        {[
-          "All",
-          "Running",
-          "Lifestyle",
-          "Premium",
-        ].map((cat) => (
-          <button
-            key={cat}
-            onClick={() => {
-              setCategory(cat);
-              setShowFilters(false);
-            }}
-            className={`
-            w-full
-            text-left
-            px-4
-            py-3
-            rounded-xl
-            transition
-            ${
-              category === cat
-                ? "bg-black text-white"
-                : "hover:bg-zinc-100"
-            }
-            `}
-          >
-            {cat}
-          </button>
-        ))}
+  <button
+    onClick={() =>
+      setShowCategories(!showCategories)
+    }
+    className="
+    w-full
+    text-left
+    font-semibold
+    py-2
+    "
+  >
+    {showCategories ? "▼" : "▶"} Categories
+  </button>
 
-      </div>
+  {showCategories && (
+    <div className="space-y-2 mt-2">
+
+      {[
+        "All",
+        "Running",
+        "Lifestyle",
+        "Premium",
+      ].map((cat) => (
+        <button
+          key={cat}
+          onClick={() => {
+            setCategory(cat);
+          }}
+          className={`
+          w-full
+          text-left
+          px-4
+          py-3
+          rounded-xl
+          transition
+          ${
+            category === cat
+              ? "bg-black text-white"
+              : "hover:bg-zinc-100"
+          }
+          `}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  )}
+
+</div>
+
+<hr className="my-4" />
+
+<div>
+
+  <button
+    onClick={() =>
+      setShowPrice(!showPrice)
+    }
+    className="
+    w-full
+    text-left
+    font-semibold
+    py-2
+    "
+  >
+    {showPrice ? "▼" : "▶"} Price
+  </button>
+
+</div>
+
+<hr className="my-4" />
+
+<div>
+
+  <button
+    onClick={() =>
+      setShowSort(!showSort)
+    }
+    className="
+    w-full
+    text-left
+    font-semibold
+    py-2
+    "
+  >
+    {showSort ? "▼" : "▶"} Sort
+  </button>
+
+  <button
+  onClick={() =>
+    setShowFilters(false)
+  }
+  className="
+  w-full
+  mt-6
+  bg-black
+  text-white
+  py-3
+  rounded-full
+  "
+>
+  Done
+</button>
+
+</div>
 
     </div>
   )}
@@ -227,5 +314,6 @@ export default function ShopPage() {
 
       </div>
     </main>
+    </>
   );
 }
