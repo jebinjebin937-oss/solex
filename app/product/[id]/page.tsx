@@ -1,6 +1,7 @@
 
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
+import WishlistButton from "@/components/WishlistButton";
 
 export default async function ProductPage({
   params,
@@ -67,7 +68,7 @@ export default async function ProductPage({
         p-6 md:p-12
         grid
         md:grid-cols-2
-        gap-12
+        gap-6
         items-center
         "
       >
@@ -79,18 +80,18 @@ export default async function ProductPage({
             alt={product.name}
             width={600}
             height={600}
-            className="h-auto"
+            className="h-auto max-h-[220px] object-contain"
           />
 
         </div>
 
         <div>
 <div className="max-w-md">
-          <p className="uppercase tracking-[6px] text-zinc-400 mb-4">
+          <p className="uppercase tracking-[4px] text-zinc-400 mb-4">
             SOLEX COLLECTION
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-black text-black mb-6">
+          <h1 className="text-4xl md:text-7xl font-black text-black mb-6">
             {product.name}
           </h1>
 
@@ -104,21 +105,21 @@ export default async function ProductPage({
 
           <div className="flex gap-3 mb-10 justify-start">
 
-            <button className="border px-6 py-3 rounded-full">
+            <button className="border px-5 py-2 rounded-full">
               UK 7
             </button>
 
-            <button className="border px-6 py-3 rounded-full">
+            <button className="border px-5 py-2 rounded-full">
               UK 8
             </button>
 
-            <button className="border px-6 py-3 rounded-full">
+            <button className="border px-5 py-2 rounded-full">
               UK 9
             </button>
 
           </div>
 
-          <div className="flex flex-col gap-4 items-center md:items-start">
+          <div className="flex flex-col gap-4 items-start">
 
             <AddToCartButton
               product={{
@@ -130,17 +131,22 @@ export default async function ProductPage({
               }}
             />
 
-            <button
-              className="
-              w-[200px]
-              px-8
-              py-4
-              border
-              rounded-full
-              "
-            >
-              Buy Now
-            </button>
+            <div className="flex gap-2 w-full">
+
+              <WishlistButton />
+
+              <button
+                className="
+                flex-1
+                py-4
+                border
+                rounded-full
+                "
+              >
+                Buy Now
+              </button>
+
+            </div>
 
           </div>
 
